@@ -1,0 +1,42 @@
+{
+  "name": "ApprovalRequestItem",
+  "fields": [
+    {
+      "fieldName": "fieldName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dataType",
+      "fieldType": "DataType",
+      "fieldValues": "STR,DEC",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "strValue",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "decValue",
+      "fieldType": "Float"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "approvalRequest",
+      "otherEntityRelationshipName": "approvalRequestItem",
+      "relationshipName": "request"
+    }
+  ],
+  "entityTableName": "approval_request_item",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210610044900"
+}

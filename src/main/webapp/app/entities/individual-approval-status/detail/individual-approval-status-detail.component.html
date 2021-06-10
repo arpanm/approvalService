@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="individualApprovalStatus">
+      <h2 data-cy="individualApprovalStatusDetailsHeading">
+        <span jhiTranslate="approvalServiceApp.individualApprovalStatus.detail.title">Individual Approval Status</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ individualApprovalStatus.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.individualApprovalStatus.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'approvalServiceApp.Status.' + individualApprovalStatus.status }}">{{
+            individualApprovalStatus.status
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.individualApprovalStatus.clientTime">Client Time</span></dt>
+        <dd>
+          <span>{{ individualApprovalStatus.clientTime }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.individualApprovalStatus.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ individualApprovalStatus.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.individualApprovalStatus.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ individualApprovalStatus.createdAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.individualApprovalStatus.updatedBy">Updated By</span></dt>
+        <dd>
+          <span>{{ individualApprovalStatus.updatedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.individualApprovalStatus.updatedAt">Updated At</span></dt>
+        <dd>
+          <span>{{ individualApprovalStatus.updatedAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.individualApprovalStatus.request">Request</span></dt>
+        <dd>
+          <div *ngIf="individualApprovalStatus.request">
+            <a [routerLink]="['/approval-request', individualApprovalStatus.request?.id, 'view']">{{
+              individualApprovalStatus.request?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.individualApprovalStatus.approver">Approver</span></dt>
+        <dd>
+          <div *ngIf="individualApprovalStatus.approver">
+            <a [routerLink]="['/approver', individualApprovalStatus.approver?.id, 'view']">{{ individualApprovalStatus.approver?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/individual-approval-status', individualApprovalStatus.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

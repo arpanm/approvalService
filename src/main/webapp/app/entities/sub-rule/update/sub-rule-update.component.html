@@ -1,0 +1,173 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-sub-rule-heading" data-cy="SubRuleCreateUpdateHeading" jhiTranslate="approvalServiceApp.subRule.home.createOrEditLabel">
+        Create or edit a Sub Rule
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.subRule.fieldName" for="field_fieldName">Field Name</label>
+          <input type="text" class="form-control" name="fieldName" id="field_fieldName" data-cy="fieldName" formControlName="fieldName" />
+          <div *ngIf="editForm.get('fieldName')!.invalid && (editForm.get('fieldName')!.dirty || editForm.get('fieldName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('fieldName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.subRule.dataType" for="field_dataType">Data Type</label>
+          <select class="form-control" name="dataType" formControlName="dataType" id="field_dataType" data-cy="dataType">
+            <option [ngValue]="null">{{ 'approvalServiceApp.DataType.null' | translate }}</option>
+            <option value="STR">{{ 'approvalServiceApp.DataType.STR' | translate }}</option>
+            <option value="DEC">{{ 'approvalServiceApp.DataType.DEC' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('dataType')!.invalid && (editForm.get('dataType')!.dirty || editForm.get('dataType')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dataType')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.subRule.condition" for="field_condition">Condition</label>
+          <select class="form-control" name="condition" formControlName="condition" id="field_condition" data-cy="condition">
+            <option [ngValue]="null">{{ 'approvalServiceApp.Condition.null' | translate }}</option>
+            <option value="EQUAL">{{ 'approvalServiceApp.Condition.EQUAL' | translate }}</option>
+            <option value="IN">{{ 'approvalServiceApp.Condition.IN' | translate }}</option>
+            <option value="RANGE">{{ 'approvalServiceApp.Condition.RANGE' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('condition')!.invalid && (editForm.get('condition')!.dirty || editForm.get('condition')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('condition')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.subRule.rangeMinValue" for="field_rangeMinValue"
+            >Range Min Value</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="rangeMinValue"
+            id="field_rangeMinValue"
+            data-cy="rangeMinValue"
+            formControlName="rangeMinValue"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.subRule.rangeMaxValue" for="field_rangeMaxValue"
+            >Range Max Value</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="rangeMaxValue"
+            id="field_rangeMaxValue"
+            data-cy="rangeMaxValue"
+            formControlName="rangeMaxValue"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.subRule.equalStrValue" for="field_equalStrValue"
+            >Equal Str Value</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="equalStrValue"
+            id="field_equalStrValue"
+            data-cy="equalStrValue"
+            formControlName="equalStrValue"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.subRule.equalDecValue" for="field_equalDecValue"
+            >Equal Dec Value</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="equalDecValue"
+            id="field_equalDecValue"
+            data-cy="equalDecValue"
+            formControlName="equalDecValue"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.subRule.appendType" for="field_appendType">Append Type</label>
+          <select class="form-control" name="appendType" formControlName="appendType" id="field_appendType" data-cy="appendType">
+            <option [ngValue]="null">{{ 'approvalServiceApp.AppendType.null' | translate }}</option>
+            <option value="START">{{ 'approvalServiceApp.AppendType.START' | translate }}</option>
+            <option value="AND">{{ 'approvalServiceApp.AppendType.AND' | translate }}</option>
+            <option value="OR">{{ 'approvalServiceApp.AppendType.OR' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('appendType')!.invalid && (editForm.get('appendType')!.dirty || editForm.get('appendType')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('appendType')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.subRule.rule" for="field_rule">Rule</label>
+          <select class="form-control" id="field_rule" data-cy="rule" name="rule" formControlName="rule">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="approvalRuleOption.id === editForm.get('rule')!.value?.id ? editForm.get('rule')!.value : approvalRuleOption"
+              *ngFor="let approvalRuleOption of approvalRulesSharedCollection; trackBy: trackApprovalRuleById"
+            >
+              {{ approvalRuleOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

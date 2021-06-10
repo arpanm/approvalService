@@ -1,0 +1,116 @@
+<div>
+  <h2 id="page-heading" data-cy="SubRuleHeading">
+    <span jhiTranslate="approvalServiceApp.subRule.home.title">Sub Rules</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="approvalServiceApp.subRule.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-sub-rule"
+        [routerLink]="['/sub-rule/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="approvalServiceApp.subRule.home.createLabel"> Create a new Sub Rule </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="subRules?.length === 0">
+    <span jhiTranslate="approvalServiceApp.subRule.home.notFound">No subRules found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="subRules && subRules.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="fieldName">
+            <span jhiTranslate="approvalServiceApp.subRule.fieldName">Field Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dataType">
+            <span jhiTranslate="approvalServiceApp.subRule.dataType">Data Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="condition">
+            <span jhiTranslate="approvalServiceApp.subRule.condition">Condition</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="rangeMinValue">
+            <span jhiTranslate="approvalServiceApp.subRule.rangeMinValue">Range Min Value</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="rangeMaxValue">
+            <span jhiTranslate="approvalServiceApp.subRule.rangeMaxValue">Range Max Value</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="equalStrValue">
+            <span jhiTranslate="approvalServiceApp.subRule.equalStrValue">Equal Str Value</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="equalDecValue">
+            <span jhiTranslate="approvalServiceApp.subRule.equalDecValue">Equal Dec Value</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="appendType">
+            <span jhiTranslate="approvalServiceApp.subRule.appendType">Append Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="rule.id">
+            <span jhiTranslate="approvalServiceApp.subRule.rule">Rule</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let subRule of subRules; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/sub-rule', subRule.id, 'view']">{{ subRule.id }}</a>
+          </td>
+          <td>{{ subRule.fieldName }}</td>
+          <td jhiTranslate="{{ 'approvalServiceApp.DataType.' + subRule.dataType }}">{{ subRule.dataType }}</td>
+          <td jhiTranslate="{{ 'approvalServiceApp.Condition.' + subRule.condition }}">{{ subRule.condition }}</td>
+          <td>{{ subRule.rangeMinValue }}</td>
+          <td>{{ subRule.rangeMaxValue }}</td>
+          <td>{{ subRule.equalStrValue }}</td>
+          <td>{{ subRule.equalDecValue }}</td>
+          <td jhiTranslate="{{ 'approvalServiceApp.AppendType.' + subRule.appendType }}">{{ subRule.appendType }}</td>
+          <td>
+            <div *ngIf="subRule.rule">
+              <a [routerLink]="['/approval-rule', subRule.rule?.id, 'view']">{{ subRule.rule?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/sub-rule', subRule.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/sub-rule', subRule.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(subRule)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

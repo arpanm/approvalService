@@ -1,0 +1,36 @@
+{
+  "approvalServiceApp": {
+    "approvalRequest": {
+      "home": {
+        "title": "Approval Requests",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Approval Request",
+        "createOrEditLabel": "Crear o editar Approval Request",
+        "notFound": "Ningún Approval Requests encontrado"
+      },
+      "created": "Un nuevo Approval Request ha sido creado con el identificador {{ param }}",
+      "updated": "Un Approval Request ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Approval Request ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Approval Request {{ id }}?"
+      },
+      "detail": {
+        "title": "Approval Request"
+      },
+      "id": "ID",
+      "programId": "Program Id",
+      "type": "Type",
+      "approveCallBackUrl": "Approve Call Back Url",
+      "rejectCallBackUrl": "Reject Call Back Url",
+      "createdBy": "Created By",
+      "createdAt": "Created At",
+      "updatedBy": "Updated By",
+      "updatedAt": "Updated At",
+      "finalStatus": "Final Status",
+      "approvalRequestItem": "Approval Request Item",
+      "individualApprovalStatus": "Individual Approval Status",
+      "approvalLevelStatus": "Approval Level Status",
+      "rule": "Rule"
+    }
+  }
+}

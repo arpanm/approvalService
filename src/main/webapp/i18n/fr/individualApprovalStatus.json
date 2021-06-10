@@ -1,0 +1,31 @@
+{
+  "approvalServiceApp": {
+    "individualApprovalStatus": {
+      "home": {
+        "title": "IndividualApprovalStatuses",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Individual Approval Status",
+        "createOrEditLabel": "Créer ou éditer un Individual Approval Status",
+        "notFound": "Aucun Individual Approval Status trouvé"
+      },
+      "created": "Un nouveau Individual Approval Status a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Individual Approval Status avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Individual Approval Status avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Individual Approval Status {{ id }} ?"
+      },
+      "detail": {
+        "title": "Individual Approval Status"
+      },
+      "id": "ID",
+      "status": "Status",
+      "clientTime": "Client Time",
+      "createdBy": "Created By",
+      "createdAt": "Created At",
+      "updatedBy": "Updated By",
+      "updatedAt": "Updated At",
+      "request": "Request",
+      "approver": "Approver"
+    }
+  }
+}

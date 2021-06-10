@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="subRule">
+      <h2 data-cy="subRuleDetailsHeading"><span jhiTranslate="approvalServiceApp.subRule.detail.title">Sub Rule</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ subRule.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.subRule.fieldName">Field Name</span></dt>
+        <dd>
+          <span>{{ subRule.fieldName }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.subRule.dataType">Data Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'approvalServiceApp.DataType.' + subRule.dataType }}">{{ subRule.dataType }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.subRule.condition">Condition</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'approvalServiceApp.Condition.' + subRule.condition }}">{{ subRule.condition }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.subRule.rangeMinValue">Range Min Value</span></dt>
+        <dd>
+          <span>{{ subRule.rangeMinValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.subRule.rangeMaxValue">Range Max Value</span></dt>
+        <dd>
+          <span>{{ subRule.rangeMaxValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.subRule.equalStrValue">Equal Str Value</span></dt>
+        <dd>
+          <span>{{ subRule.equalStrValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.subRule.equalDecValue">Equal Dec Value</span></dt>
+        <dd>
+          <span>{{ subRule.equalDecValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.subRule.appendType">Append Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'approvalServiceApp.AppendType.' + subRule.appendType }}">{{ subRule.appendType }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.subRule.rule">Rule</span></dt>
+        <dd>
+          <div *ngIf="subRule.rule">
+            <a [routerLink]="['/approval-rule', subRule.rule?.id, 'view']">{{ subRule.rule?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/sub-rule', subRule.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

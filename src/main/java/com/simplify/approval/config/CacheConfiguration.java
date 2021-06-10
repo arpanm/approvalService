@@ -48,6 +48,23 @@ public class CacheConfiguration {
             createCache(cm, com.simplify.approval.domain.User.class.getName());
             createCache(cm, com.simplify.approval.domain.Authority.class.getName());
             createCache(cm, com.simplify.approval.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.simplify.approval.domain.ApprovalRule.class.getName());
+            createCache(cm, com.simplify.approval.domain.ApprovalRule.class.getName() + ".subRules");
+            createCache(cm, com.simplify.approval.domain.ApprovalRule.class.getName() + ".approvers");
+            createCache(cm, com.simplify.approval.domain.ApprovalRule.class.getName() + ".approvalRequests");
+            createCache(cm, com.simplify.approval.domain.SubRule.class.getName());
+            createCache(cm, com.simplify.approval.domain.SubRule.class.getName() + ".subRuleInListItems");
+            createCache(cm, com.simplify.approval.domain.SubRuleInListItem.class.getName());
+            createCache(cm, com.simplify.approval.domain.Approver.class.getName());
+            createCache(cm, com.simplify.approval.domain.Approver.class.getName() + ".individualApprovalStatuses");
+            createCache(cm, com.simplify.approval.domain.Approver.class.getName() + ".approvalLevelStatuses");
+            createCache(cm, com.simplify.approval.domain.ApprovalRequest.class.getName());
+            createCache(cm, com.simplify.approval.domain.ApprovalRequest.class.getName() + ".approvalRequestItems");
+            createCache(cm, com.simplify.approval.domain.ApprovalRequest.class.getName() + ".individualApprovalStatuses");
+            createCache(cm, com.simplify.approval.domain.ApprovalRequest.class.getName() + ".approvalLevelStatuses");
+            createCache(cm, com.simplify.approval.domain.ApprovalRequestItem.class.getName());
+            createCache(cm, com.simplify.approval.domain.IndividualApprovalStatus.class.getName());
+            createCache(cm, com.simplify.approval.domain.ApprovalLevelStatus.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

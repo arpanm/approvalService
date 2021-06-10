@@ -1,0 +1,97 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-approver-heading" data-cy="ApproverCreateUpdateHeading" jhiTranslate="approvalServiceApp.approver.home.createOrEditLabel">
+        Create or edit a Approver
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.approver.programUserId" for="field_programUserId"
+            >Program User Id</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="programUserId"
+            id="field_programUserId"
+            data-cy="programUserId"
+            formControlName="programUserId"
+          />
+          <div
+            *ngIf="
+              editForm.get('programUserId')!.invalid && (editForm.get('programUserId')!.dirty || editForm.get('programUserId')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('programUserId')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.approver.email" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+          <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.approver.level" for="field_level">Level</label>
+          <input type="number" class="form-control" name="level" id="field_level" data-cy="level" formControlName="level" />
+          <div *ngIf="editForm.get('level')!.invalid && (editForm.get('level')!.dirty || editForm.get('level')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('level')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('level')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.approver.rule" for="field_rule">Rule</label>
+          <select class="form-control" id="field_rule" data-cy="rule" name="rule" formControlName="rule">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="approvalRuleOption.id === editForm.get('rule')!.value?.id ? editForm.get('rule')!.value : approvalRuleOption"
+              *ngFor="let approvalRuleOption of approvalRulesSharedCollection; trackBy: trackApprovalRuleById"
+            >
+              {{ approvalRuleOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

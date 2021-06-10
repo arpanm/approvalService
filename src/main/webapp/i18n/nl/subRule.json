@@ -1,0 +1,33 @@
+{
+  "approvalServiceApp": {
+    "subRule": {
+      "home": {
+        "title": "Sub Rules",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Maak een nieuwe Sub Rule",
+        "createOrEditLabel": "Maak of wijzig een Sub Rule",
+        "notFound": "No Sub Rules found"
+      },
+      "created": "A new Sub Rule is created with identifier {{ param }}",
+      "updated": "A Sub Rule is updated with identifier {{ param }}",
+      "deleted": "A Sub Rule is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Bent u zeker dat u Sub Rule {{ id }} wilt verwijderen?"
+      },
+      "detail": {
+        "title": "Sub Rule"
+      },
+      "id": "ID",
+      "fieldName": "Field Name",
+      "dataType": "Data Type",
+      "condition": "Condition",
+      "rangeMinValue": "Range Min Value",
+      "rangeMaxValue": "Range Max Value",
+      "equalStrValue": "Equal Str Value",
+      "equalDecValue": "Equal Dec Value",
+      "appendType": "Append Type",
+      "subRuleInListItem": "Sub Rule In List Item",
+      "rule": "Rule"
+    }
+  }
+}

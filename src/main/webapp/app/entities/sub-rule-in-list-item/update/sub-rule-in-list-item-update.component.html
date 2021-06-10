@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-sub-rule-in-list-item-heading"
+        data-cy="SubRuleInListItemCreateUpdateHeading"
+        jhiTranslate="approvalServiceApp.subRuleInListItem.home.createOrEditLabel"
+      >
+        Create or edit a Sub Rule In List Item
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.subRuleInListItem.strItem" for="field_strItem">Str Item</label>
+          <input type="text" class="form-control" name="strItem" id="field_strItem" data-cy="strItem" formControlName="strItem" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.subRuleInListItem.decItem" for="field_decItem">Dec Item</label>
+          <input type="number" class="form-control" name="decItem" id="field_decItem" data-cy="decItem" formControlName="decItem" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.subRuleInListItem.subRule" for="field_subRule">Sub Rule</label>
+          <select class="form-control" id="field_subRule" data-cy="subRule" name="subRule" formControlName="subRule">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="subRuleOption.id === editForm.get('subRule')!.value?.id ? editForm.get('subRule')!.value : subRuleOption"
+              *ngFor="let subRuleOption of subRulesSharedCollection; trackBy: trackSubRuleById"
+            >
+              {{ subRuleOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

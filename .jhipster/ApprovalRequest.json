@@ -1,0 +1,81 @@
+{
+  "name": "ApprovalRequest",
+  "fields": [
+    {
+      "fieldName": "programId",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "ApprovalType",
+      "fieldValues": "Job,Offer,Assignment,Timesheet,Expense,Invoice",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "approveCallBackUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "rejectCallBackUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updatedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "finalStatus",
+      "fieldType": "Status",
+      "fieldValues": "INIT,EMAIL_SEND,APPROVED,REJECTED"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "approvalRequestItem",
+      "otherEntityRelationshipName": "request",
+      "relationshipName": "approvalRequestItem"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "individualApprovalStatus",
+      "otherEntityRelationshipName": "request",
+      "relationshipName": "individualApprovalStatus"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "approvalLevelStatus",
+      "otherEntityRelationshipName": "request",
+      "relationshipName": "approvalLevelStatus"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "approvalRule",
+      "otherEntityRelationshipName": "approvalRequest",
+      "relationshipName": "rule"
+    }
+  ],
+  "entityTableName": "approval_request",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210610044859"
+}

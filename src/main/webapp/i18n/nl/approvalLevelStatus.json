@@ -1,0 +1,32 @@
+{
+  "approvalServiceApp": {
+    "approvalLevelStatus": {
+      "home": {
+        "title": "Approval Level Statuses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Maak een nieuwe Approval Level Status",
+        "createOrEditLabel": "Maak of wijzig een Approval Level Status",
+        "notFound": "No Approval Level Statuses found"
+      },
+      "created": "A new Approval Level Status is created with identifier {{ param }}",
+      "updated": "A Approval Level Status is updated with identifier {{ param }}",
+      "deleted": "A Approval Level Status is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Bent u zeker dat u Approval Level Status {{ id }} wilt verwijderen?"
+      },
+      "detail": {
+        "title": "Approval Level Status"
+      },
+      "id": "ID",
+      "status": "Status",
+      "level": "Level",
+      "clientTime": "Client Time",
+      "createdBy": "Created By",
+      "createdAt": "Created At",
+      "updatedBy": "Updated By",
+      "updatedAt": "Updated At",
+      "request": "Request",
+      "approver": "Approver"
+    }
+  }
+}

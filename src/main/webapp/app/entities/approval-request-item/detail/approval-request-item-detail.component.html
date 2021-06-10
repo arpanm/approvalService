@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="approvalRequestItem">
+      <h2 data-cy="approvalRequestItemDetailsHeading">
+        <span jhiTranslate="approvalServiceApp.approvalRequestItem.detail.title">Approval Request Item</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ approvalRequestItem.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approvalRequestItem.fieldName">Field Name</span></dt>
+        <dd>
+          <span>{{ approvalRequestItem.fieldName }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approvalRequestItem.dataType">Data Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'approvalServiceApp.DataType.' + approvalRequestItem.dataType }}">{{ approvalRequestItem.dataType }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approvalRequestItem.strValue">Str Value</span></dt>
+        <dd>
+          <span>{{ approvalRequestItem.strValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approvalRequestItem.decValue">Dec Value</span></dt>
+        <dd>
+          <span>{{ approvalRequestItem.decValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approvalRequestItem.request">Request</span></dt>
+        <dd>
+          <div *ngIf="approvalRequestItem.request">
+            <a [routerLink]="['/approval-request', approvalRequestItem.request?.id, 'view']">{{ approvalRequestItem.request?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/approval-request-item', approvalRequestItem.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

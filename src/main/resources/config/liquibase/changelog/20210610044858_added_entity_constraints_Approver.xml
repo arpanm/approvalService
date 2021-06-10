@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity Approver.
+    -->
+    <changeSet id="20210610044858-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="rule_id"
+                                 baseTableName="approver"
+                                 constraintName="fk_approver__rule_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="approval_rule"/>
+    </changeSet>
+</databaseChangeLog>

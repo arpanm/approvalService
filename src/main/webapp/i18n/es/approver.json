@@ -1,0 +1,29 @@
+{
+  "approvalServiceApp": {
+    "approver": {
+      "home": {
+        "title": "Approvers",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Approver",
+        "createOrEditLabel": "Crear o editar Approver",
+        "notFound": "Ningún Approvers encontrado"
+      },
+      "created": "Un nuevo Approver ha sido creado con el identificador {{ param }}",
+      "updated": "Un Approver ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Approver ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Approver {{ id }}?"
+      },
+      "detail": {
+        "title": "Approver"
+      },
+      "id": "ID",
+      "programUserId": "Program User Id",
+      "email": "Email",
+      "level": "Level",
+      "individualApprovalStatus": "Individual Approval Status",
+      "approvalLevelStatus": "Approval Level Status",
+      "rule": "Rule"
+    }
+  }
+}

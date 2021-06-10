@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity IndividualApprovalStatus.
+    -->
+    <changeSet id="20210610044901-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="request_id"
+                                 baseTableName="individual_approval_status"
+                                 constraintName="fk_individual_approval_status__request_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="approval_request"/>
+
+        <addForeignKeyConstraint baseColumnNames="approver_id"
+                                 baseTableName="individual_approval_status"
+                                 constraintName="fk_individual_approval_status__approver_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="approver"/>
+    </changeSet>
+</databaseChangeLog>

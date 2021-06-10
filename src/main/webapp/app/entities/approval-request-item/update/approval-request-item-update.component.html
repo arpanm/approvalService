@@ -1,0 +1,105 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-approval-request-item-heading"
+        data-cy="ApprovalRequestItemCreateUpdateHeading"
+        jhiTranslate="approvalServiceApp.approvalRequestItem.home.createOrEditLabel"
+      >
+        Create or edit a Approval Request Item
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.approvalRequestItem.fieldName" for="field_fieldName"
+            >Field Name</label
+          >
+          <input type="text" class="form-control" name="fieldName" id="field_fieldName" data-cy="fieldName" formControlName="fieldName" />
+          <div *ngIf="editForm.get('fieldName')!.invalid && (editForm.get('fieldName')!.dirty || editForm.get('fieldName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('fieldName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.approvalRequestItem.dataType" for="field_dataType"
+            >Data Type</label
+          >
+          <select class="form-control" name="dataType" formControlName="dataType" id="field_dataType" data-cy="dataType">
+            <option [ngValue]="null">{{ 'approvalServiceApp.DataType.null' | translate }}</option>
+            <option value="STR">{{ 'approvalServiceApp.DataType.STR' | translate }}</option>
+            <option value="DEC">{{ 'approvalServiceApp.DataType.DEC' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('dataType')!.invalid && (editForm.get('dataType')!.dirty || editForm.get('dataType')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dataType')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.approvalRequestItem.strValue" for="field_strValue"
+            >Str Value</label
+          >
+          <input type="text" class="form-control" name="strValue" id="field_strValue" data-cy="strValue" formControlName="strValue" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.approvalRequestItem.decValue" for="field_decValue"
+            >Dec Value</label
+          >
+          <input type="number" class="form-control" name="decValue" id="field_decValue" data-cy="decValue" formControlName="decValue" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.approvalRequestItem.request" for="field_request"
+            >Request</label
+          >
+          <select class="form-control" id="field_request" data-cy="request" name="request" formControlName="request">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                approvalRequestOption.id === editForm.get('request')!.value?.id ? editForm.get('request')!.value : approvalRequestOption
+              "
+              *ngFor="let approvalRequestOption of approvalRequestsSharedCollection; trackBy: trackApprovalRequestById"
+            >
+              {{ approvalRequestOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

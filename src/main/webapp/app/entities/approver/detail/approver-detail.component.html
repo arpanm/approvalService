@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="approver">
+      <h2 data-cy="approverDetailsHeading"><span jhiTranslate="approvalServiceApp.approver.detail.title">Approver</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ approver.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approver.programUserId">Program User Id</span></dt>
+        <dd>
+          <span>{{ approver.programUserId }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approver.email">Email</span></dt>
+        <dd>
+          <span>{{ approver.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approver.level">Level</span></dt>
+        <dd>
+          <span>{{ approver.level }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approver.rule">Rule</span></dt>
+        <dd>
+          <div *ngIf="approver.rule">
+            <a [routerLink]="['/approval-rule', approver.rule?.id, 'view']">{{ approver.rule?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/approver', approver.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
