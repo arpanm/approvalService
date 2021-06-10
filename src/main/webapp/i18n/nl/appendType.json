@@ -1,0 +1,10 @@
+{
+  "approvalServiceApp": {
+    "AppendType": {
+      "null": "",
+      "START": "START",
+      "AND": "AND",
+      "OR": "OR"
+    }
+  }
+}

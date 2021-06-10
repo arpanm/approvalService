@@ -1,0 +1,10 @@
+{
+  "approvalServiceApp": {
+    "Condition": {
+      "null": "",
+      "EQUAL": "EQUAL",
+      "IN": "IN",
+      "RANGE": "RANGE"
+    }
+  }
+}

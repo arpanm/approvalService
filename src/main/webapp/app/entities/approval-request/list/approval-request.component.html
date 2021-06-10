@@ -1,0 +1,122 @@
+<div>
+  <h2 id="page-heading" data-cy="ApprovalRequestHeading">
+    <span jhiTranslate="approvalServiceApp.approvalRequest.home.title">Approval Requests</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="approvalServiceApp.approvalRequest.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-approval-request"
+        [routerLink]="['/approval-request/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="approvalServiceApp.approvalRequest.home.createLabel"> Create a new Approval Request </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="approvalRequests?.length === 0">
+    <span jhiTranslate="approvalServiceApp.approvalRequest.home.notFound">No approvalRequests found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="approvalRequests && approvalRequests.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="programId">
+            <span jhiTranslate="approvalServiceApp.approvalRequest.programId">Program Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="type">
+            <span jhiTranslate="approvalServiceApp.approvalRequest.type">Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="approveCallBackUrl">
+            <span jhiTranslate="approvalServiceApp.approvalRequest.approveCallBackUrl">Approve Call Back Url</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="rejectCallBackUrl">
+            <span jhiTranslate="approvalServiceApp.approvalRequest.rejectCallBackUrl">Reject Call Back Url</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="approvalServiceApp.approvalRequest.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdAt">
+            <span jhiTranslate="approvalServiceApp.approvalRequest.createdAt">Created At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="updatedBy">
+            <span jhiTranslate="approvalServiceApp.approvalRequest.updatedBy">Updated By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="updatedAt">
+            <span jhiTranslate="approvalServiceApp.approvalRequest.updatedAt">Updated At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="finalStatus">
+            <span jhiTranslate="approvalServiceApp.approvalRequest.finalStatus">Final Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="rule.id">
+            <span jhiTranslate="approvalServiceApp.approvalRequest.rule">Rule</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let approvalRequest of approvalRequests; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/approval-request', approvalRequest.id, 'view']">{{ approvalRequest.id }}</a>
+          </td>
+          <td>{{ approvalRequest.programId }}</td>
+          <td jhiTranslate="{{ 'approvalServiceApp.ApprovalType.' + approvalRequest.type }}">{{ approvalRequest.type }}</td>
+          <td>{{ approvalRequest.approveCallBackUrl }}</td>
+          <td>{{ approvalRequest.rejectCallBackUrl }}</td>
+          <td>{{ approvalRequest.createdBy }}</td>
+          <td>{{ approvalRequest.createdAt | formatMediumDate }}</td>
+          <td>{{ approvalRequest.updatedBy }}</td>
+          <td>{{ approvalRequest.updatedAt | formatMediumDate }}</td>
+          <td jhiTranslate="{{ 'approvalServiceApp.Status.' + approvalRequest.finalStatus }}">{{ approvalRequest.finalStatus }}</td>
+          <td>
+            <div *ngIf="approvalRequest.rule">
+              <a [routerLink]="['/approval-rule', approvalRequest.rule?.id, 'view']">{{ approvalRequest.rule?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/approval-request', approvalRequest.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/approval-request', approvalRequest.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(approvalRequest)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

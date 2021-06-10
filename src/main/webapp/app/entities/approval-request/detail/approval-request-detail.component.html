@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="approvalRequest">
+      <h2 data-cy="approvalRequestDetailsHeading">
+        <span jhiTranslate="approvalServiceApp.approvalRequest.detail.title">Approval Request</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ approvalRequest.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approvalRequest.programId">Program Id</span></dt>
+        <dd>
+          <span>{{ approvalRequest.programId }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approvalRequest.type">Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'approvalServiceApp.ApprovalType.' + approvalRequest.type }}">{{ approvalRequest.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approvalRequest.approveCallBackUrl">Approve Call Back Url</span></dt>
+        <dd>
+          <span>{{ approvalRequest.approveCallBackUrl }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approvalRequest.rejectCallBackUrl">Reject Call Back Url</span></dt>
+        <dd>
+          <span>{{ approvalRequest.rejectCallBackUrl }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approvalRequest.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ approvalRequest.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approvalRequest.createdAt">Created At</span></dt>
+        <dd>
+          <span>{{ approvalRequest.createdAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approvalRequest.updatedBy">Updated By</span></dt>
+        <dd>
+          <span>{{ approvalRequest.updatedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approvalRequest.updatedAt">Updated At</span></dt>
+        <dd>
+          <span>{{ approvalRequest.updatedAt | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approvalRequest.finalStatus">Final Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'approvalServiceApp.Status.' + approvalRequest.finalStatus }}">{{ approvalRequest.finalStatus }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.approvalRequest.rule">Rule</span></dt>
+        <dd>
+          <div *ngIf="approvalRequest.rule">
+            <a [routerLink]="['/approval-rule', approvalRequest.rule?.id, 'view']">{{ approvalRequest.rule?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/approval-request', approvalRequest.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

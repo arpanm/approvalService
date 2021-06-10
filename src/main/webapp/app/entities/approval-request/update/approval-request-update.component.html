@@ -1,0 +1,192 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-approval-request-heading"
+        data-cy="ApprovalRequestCreateUpdateHeading"
+        jhiTranslate="approvalServiceApp.approvalRequest.home.createOrEditLabel"
+      >
+        Create or edit a Approval Request
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.approvalRequest.programId" for="field_programId"
+            >Program Id</label
+          >
+          <input type="text" class="form-control" name="programId" id="field_programId" data-cy="programId" formControlName="programId" />
+          <div *ngIf="editForm.get('programId')!.invalid && (editForm.get('programId')!.dirty || editForm.get('programId')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('programId')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.approvalRequest.type" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'approvalServiceApp.ApprovalType.null' | translate }}</option>
+            <option value="Job">{{ 'approvalServiceApp.ApprovalType.Job' | translate }}</option>
+            <option value="Offer">{{ 'approvalServiceApp.ApprovalType.Offer' | translate }}</option>
+            <option value="Assignment">{{ 'approvalServiceApp.ApprovalType.Assignment' | translate }}</option>
+            <option value="Timesheet">{{ 'approvalServiceApp.ApprovalType.Timesheet' | translate }}</option>
+            <option value="Expense">{{ 'approvalServiceApp.ApprovalType.Expense' | translate }}</option>
+            <option value="Invoice">{{ 'approvalServiceApp.ApprovalType.Invoice' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('type')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="approvalServiceApp.approvalRequest.approveCallBackUrl"
+            for="field_approveCallBackUrl"
+            >Approve Call Back Url</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="approveCallBackUrl"
+            id="field_approveCallBackUrl"
+            data-cy="approveCallBackUrl"
+            formControlName="approveCallBackUrl"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="approvalServiceApp.approvalRequest.rejectCallBackUrl"
+            for="field_rejectCallBackUrl"
+            >Reject Call Back Url</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="rejectCallBackUrl"
+            id="field_rejectCallBackUrl"
+            data-cy="rejectCallBackUrl"
+            formControlName="rejectCallBackUrl"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.approvalRequest.createdBy" for="field_createdBy"
+            >Created By</label
+          >
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.approvalRequest.createdAt" for="field_createdAt"
+            >Created At</label
+          >
+          <div class="input-group">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="text"
+              class="form-control"
+              name="createdAt"
+              ngbDatepicker
+              #createdAtDp="ngbDatepicker"
+              formControlName="createdAt"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="createdAtDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.approvalRequest.updatedBy" for="field_updatedBy"
+            >Updated By</label
+          >
+          <input type="text" class="form-control" name="updatedBy" id="field_updatedBy" data-cy="updatedBy" formControlName="updatedBy" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.approvalRequest.updatedAt" for="field_updatedAt"
+            >Updated At</label
+          >
+          <div class="input-group">
+            <input
+              id="field_updatedAt"
+              data-cy="updatedAt"
+              type="text"
+              class="form-control"
+              name="updatedAt"
+              ngbDatepicker
+              #updatedAtDp="ngbDatepicker"
+              formControlName="updatedAt"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="updatedAtDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.approvalRequest.finalStatus" for="field_finalStatus"
+            >Final Status</label
+          >
+          <select class="form-control" name="finalStatus" formControlName="finalStatus" id="field_finalStatus" data-cy="finalStatus">
+            <option [ngValue]="null">{{ 'approvalServiceApp.Status.null' | translate }}</option>
+            <option value="INIT">{{ 'approvalServiceApp.Status.INIT' | translate }}</option>
+            <option value="EMAIL_SEND">{{ 'approvalServiceApp.Status.EMAIL_SEND' | translate }}</option>
+            <option value="APPROVED">{{ 'approvalServiceApp.Status.APPROVED' | translate }}</option>
+            <option value="REJECTED">{{ 'approvalServiceApp.Status.REJECTED' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="approvalServiceApp.approvalRequest.rule" for="field_rule">Rule</label>
+          <select class="form-control" id="field_rule" data-cy="rule" name="rule" formControlName="rule">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="approvalRuleOption.id === editForm.get('rule')!.value?.id ? editForm.get('rule')!.value : approvalRuleOption"
+              *ngFor="let approvalRuleOption of approvalRulesSharedCollection; trackBy: trackApprovalRuleById"
+            >
+              {{ approvalRuleOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

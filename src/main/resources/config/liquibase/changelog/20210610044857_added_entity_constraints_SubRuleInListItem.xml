@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity SubRuleInListItem.
+    -->
+    <changeSet id="20210610044857-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="sub_rule_id"
+                                 baseTableName="sub_rule_in_list_item"
+                                 constraintName="fk_sub_rule_in_list_item__sub_rule_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sub_rule"/>
+    </changeSet>
+</databaseChangeLog>

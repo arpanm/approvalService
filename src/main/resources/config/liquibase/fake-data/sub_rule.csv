@@ -1,0 +1,11 @@
+id;field_name;data_type;jhi_condition;range_min_value;range_max_value;equal_str_value;equal_dec_value;append_type
+1;cyan Licensed Rubber;STR;RANGE;32078;38838;orchestration;7721;AND
+2;Markets Awesome;DEC;RANGE;24175;92442;Sports mesh;82653;START
+3;parse program;DEC;EQUAL;57804;84708;IB;47008;OR
+4;Salad of;STR;EQUAL;40528;42193;Ramp program Chicken;85195;START
+5;Direct Pennsylvania;DEC;EQUAL;71692;62334;matrix invoice Games;24402;START
+6;Table bypassing productize;STR;EQUAL;66682;42462;compressing optical;72819;OR
+7;Dollar;STR;EQUAL;71975;3104;Gloves Honduras;83635;OR
+8;circuit;STR;IN;43072;68802;synthesizing Function-based;74962;AND
+9;Salad best-of-breed Account;DEC;EQUAL;77681;79198;Creative Pennsylvania Gloves;65009;AND
+10;turn-key Interface incubate;STR;RANGE;36873;10794;Avon Industrial;29148;START

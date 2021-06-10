@@ -1,0 +1,68 @@
+{
+  "name": "SubRule",
+  "fields": [
+    {
+      "fieldName": "fieldName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dataType",
+      "fieldType": "DataType",
+      "fieldValues": "STR,DEC",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "condition",
+      "fieldType": "Condition",
+      "fieldValues": "EQUAL,IN,RANGE",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "rangeMinValue",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "rangeMaxValue",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "equalStrValue",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "equalDecValue",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "appendType",
+      "fieldType": "AppendType",
+      "fieldValues": "START,AND,OR",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "subRuleInListItem",
+      "otherEntityRelationshipName": "subRule",
+      "relationshipName": "subRuleInListItem"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "approvalRule",
+      "otherEntityRelationshipName": "subRule",
+      "relationshipName": "rule"
+    }
+  ],
+  "entityTableName": "sub_rule",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210610044856"
+}

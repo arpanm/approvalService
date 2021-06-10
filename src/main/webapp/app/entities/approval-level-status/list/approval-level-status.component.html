@@ -1,0 +1,120 @@
+<div>
+  <h2 id="page-heading" data-cy="ApprovalLevelStatusHeading">
+    <span jhiTranslate="approvalServiceApp.approvalLevelStatus.home.title">Approval Level Statuses</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="approvalServiceApp.approvalLevelStatus.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-approval-level-status"
+        [routerLink]="['/approval-level-status/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="approvalServiceApp.approvalLevelStatus.home.createLabel"> Create a new Approval Level Status </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="approvalLevelStatuses?.length === 0">
+    <span jhiTranslate="approvalServiceApp.approvalLevelStatus.home.notFound">No approvalLevelStatuses found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="approvalLevelStatuses && approvalLevelStatuses.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="status">
+            <span jhiTranslate="approvalServiceApp.approvalLevelStatus.status">Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="level">
+            <span jhiTranslate="approvalServiceApp.approvalLevelStatus.level">Level</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="clientTime">
+            <span jhiTranslate="approvalServiceApp.approvalLevelStatus.clientTime">Client Time</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="approvalServiceApp.approvalLevelStatus.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdAt">
+            <span jhiTranslate="approvalServiceApp.approvalLevelStatus.createdAt">Created At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="updatedBy">
+            <span jhiTranslate="approvalServiceApp.approvalLevelStatus.updatedBy">Updated By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="updatedAt">
+            <span jhiTranslate="approvalServiceApp.approvalLevelStatus.updatedAt">Updated At</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="request.id">
+            <span jhiTranslate="approvalServiceApp.approvalLevelStatus.request">Request</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="approver.id">
+            <span jhiTranslate="approvalServiceApp.approvalLevelStatus.approver">Approver</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let approvalLevelStatus of approvalLevelStatuses; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/approval-level-status', approvalLevelStatus.id, 'view']">{{ approvalLevelStatus.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'approvalServiceApp.Status.' + approvalLevelStatus.status }}">{{ approvalLevelStatus.status }}</td>
+          <td>{{ approvalLevelStatus.level }}</td>
+          <td>{{ approvalLevelStatus.clientTime }}</td>
+          <td>{{ approvalLevelStatus.createdBy }}</td>
+          <td>{{ approvalLevelStatus.createdAt | formatMediumDate }}</td>
+          <td>{{ approvalLevelStatus.updatedBy }}</td>
+          <td>{{ approvalLevelStatus.updatedAt | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="approvalLevelStatus.request">
+              <a [routerLink]="['/approval-request', approvalLevelStatus.request?.id, 'view']">{{ approvalLevelStatus.request?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="approvalLevelStatus.approver">
+              <a [routerLink]="['/approver', approvalLevelStatus.approver?.id, 'view']">{{ approvalLevelStatus.approver?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/approval-level-status', approvalLevelStatus.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/approval-level-status', approvalLevelStatus.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(approvalLevelStatus)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

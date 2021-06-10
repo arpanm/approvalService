@@ -1,0 +1,26 @@
+{
+  "approvalServiceApp": {
+    "subRuleInListItem": {
+      "home": {
+        "title": "SubRuleInListItems",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Sub Rule In List Item",
+        "createOrEditLabel": "Créer ou éditer un Sub Rule In List Item",
+        "notFound": "Aucun Sub Rule In List Item trouvé"
+      },
+      "created": "Un nouveau Sub Rule In List Item a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Sub Rule In List Item avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Sub Rule In List Item avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Sub Rule In List Item {{ id }} ?"
+      },
+      "detail": {
+        "title": "Sub Rule In List Item"
+      },
+      "id": "ID",
+      "strItem": "Str Item",
+      "decItem": "Dec Item",
+      "subRule": "Sub Rule"
+    }
+  }
+}

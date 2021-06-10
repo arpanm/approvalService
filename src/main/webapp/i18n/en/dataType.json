@@ -1,0 +1,9 @@
+{
+  "approvalServiceApp": {
+    "DataType": {
+      "null": "",
+      "STR": "STR",
+      "DEC": "DEC"
+    }
+  }
+}

@@ -42,7 +42,18 @@
     "jwtSecretKey": "Yjg5MDU4OWRlMTFhNGMxZGJjNzIyMmU0NWE3YmY2N2Y4NjljMjlhMGM2MmFmYTJmNzljYzcyMGUxNDUyOTlmM2E3Yjc0ZGNiN2EzM2Y1NTZkNGJmNGJlMzc5MDVmNmIzYWU5Mzc2MTM3NzllMzIzYzNhNWMxNWI5YWFmZTNlYTk=",
     "clientTheme": "none",
     "clientThemeVariant": "",
-    "reactive": false
+    "reactive": false,
+    "entities": [
+      "ApprovalRule",
+      "SubRule",
+      "SubRuleInListItem",
+      "Approver",
+      "ApprovalRequest",
+      "ApprovalRequestItem",
+      "IndividualApprovalStatus",
+      "ApprovalLevelStatus"
+    ],
+    "lastLiquibaseTimestamp": 1623300542000
   },
   "git-provider": "GitHub",
   "git-company": "arpanm",

@@ -1,0 +1,11 @@
+{
+  "approvalServiceApp": {
+    "Status": {
+      "null": "",
+      "INIT": "INIT",
+      "EMAIL_SEND": "EMAIL_SEND",
+      "APPROVED": "APPROVED",
+      "REJECTED": "REJECTED"
+    }
+  }
+}

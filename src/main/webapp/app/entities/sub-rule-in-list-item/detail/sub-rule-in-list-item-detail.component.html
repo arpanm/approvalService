@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="subRuleInListItem">
+      <h2 data-cy="subRuleInListItemDetailsHeading">
+        <span jhiTranslate="approvalServiceApp.subRuleInListItem.detail.title">Sub Rule In List Item</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ subRuleInListItem.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.subRuleInListItem.strItem">Str Item</span></dt>
+        <dd>
+          <span>{{ subRuleInListItem.strItem }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.subRuleInListItem.decItem">Dec Item</span></dt>
+        <dd>
+          <span>{{ subRuleInListItem.decItem }}</span>
+        </dd>
+        <dt><span jhiTranslate="approvalServiceApp.subRuleInListItem.subRule">Sub Rule</span></dt>
+        <dd>
+          <div *ngIf="subRuleInListItem.subRule">
+            <a [routerLink]="['/sub-rule', subRuleInListItem.subRule?.id, 'view']">{{ subRuleInListItem.subRule?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/sub-rule-in-list-item', subRuleInListItem.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+{
+  "approvalServiceApp": {
+    "approvalRule": {
+      "home": {
+        "title": "Approval Rules",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Maak een nieuwe Approval Rule",
+        "createOrEditLabel": "Maak of wijzig een Approval Rule",
+        "notFound": "No Approval Rules found"
+      },
+      "created": "A new Approval Rule is created with identifier {{ param }}",
+      "updated": "A Approval Rule is updated with identifier {{ param }}",
+      "deleted": "A Approval Rule is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Bent u zeker dat u Approval Rule {{ id }} wilt verwijderen?"
+      },
+      "detail": {
+        "title": "Approval Rule"
+      },
+      "id": "ID",
+      "programId": "Program Id",
+      "type": "Type",
+      "createdBy": "Created By",
+      "createdAt": "Created At",
+      "updatedBy": "Updated By",
+      "updatedAt": "Updated At",
+      "subRule": "Sub Rule",
+      "approver": "Approver",
+      "approvalRequest": "Approval Request"
+    }
+  }
+}

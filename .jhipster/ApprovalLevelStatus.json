@@ -1,0 +1,61 @@
+{
+  "name": "ApprovalLevelStatus",
+  "fields": [
+    {
+      "fieldName": "status",
+      "fieldType": "Status",
+      "fieldValues": "INIT,EMAIL_SEND,APPROVED,REJECTED",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "level",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "clientTime",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updatedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "approvalRequest",
+      "otherEntityRelationshipName": "approvalLevelStatus",
+      "relationshipName": "request"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "approver",
+      "otherEntityRelationshipName": "approvalLevelStatus",
+      "relationshipName": "approver"
+    }
+  ],
+  "entityTableName": "approval_level_status",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210610044902"
+}

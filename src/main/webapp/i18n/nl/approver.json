@@ -1,0 +1,29 @@
+{
+  "approvalServiceApp": {
+    "approver": {
+      "home": {
+        "title": "Approvers",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Maak een nieuwe Approver",
+        "createOrEditLabel": "Maak of wijzig een Approver",
+        "notFound": "No Approvers found"
+      },
+      "created": "A new Approver is created with identifier {{ param }}",
+      "updated": "A Approver is updated with identifier {{ param }}",
+      "deleted": "A Approver is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Bent u zeker dat u Approver {{ id }} wilt verwijderen?"
+      },
+      "detail": {
+        "title": "Approver"
+      },
+      "id": "ID",
+      "programUserId": "Program User Id",
+      "email": "Email",
+      "level": "Level",
+      "individualApprovalStatus": "Individual Approval Status",
+      "approvalLevelStatus": "Approval Level Status",
+      "rule": "Rule"
+    }
+  }
+}

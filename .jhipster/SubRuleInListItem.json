@@ -1,0 +1,31 @@
+{
+  "name": "SubRuleInListItem",
+  "fields": [
+    {
+      "fieldName": "strItem",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "decItem",
+      "fieldType": "Float"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "subRule",
+      "otherEntityRelationshipName": "subRuleInListItem",
+      "relationshipName": "subRule"
+    }
+  ],
+  "entityTableName": "sub_rule_in_list_item",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210610044857"
+}

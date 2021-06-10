@@ -1,0 +1,28 @@
+{
+  "approvalServiceApp": {
+    "approvalRequestItem": {
+      "home": {
+        "title": "ApprovalRequestItems",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Approval Request Item",
+        "createOrEditLabel": "Créer ou éditer un Approval Request Item",
+        "notFound": "Aucun Approval Request Item trouvé"
+      },
+      "created": "Un nouveau Approval Request Item a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Approval Request Item avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Approval Request Item avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Approval Request Item {{ id }} ?"
+      },
+      "detail": {
+        "title": "Approval Request Item"
+      },
+      "id": "ID",
+      "fieldName": "Field Name",
+      "dataType": "Data Type",
+      "strValue": "Str Value",
+      "decValue": "Dec Value",
+      "request": "Request"
+    }
+  }
+}

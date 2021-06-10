@@ -1,0 +1,62 @@
+{
+  "name": "ApprovalRule",
+  "fields": [
+    {
+      "fieldName": "programId",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "ApprovalType",
+      "fieldValues": "Job,Offer,Assignment,Timesheet,Expense,Invoice",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updatedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "subRule",
+      "otherEntityRelationshipName": "rule",
+      "relationshipName": "subRule"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "approver",
+      "otherEntityRelationshipName": "rule",
+      "relationshipName": "approver"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "approvalRequest",
+      "otherEntityRelationshipName": "rule",
+      "relationshipName": "approvalRequest"
+    }
+  ],
+  "entityTableName": "approval_rule",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210610044855"
+}
