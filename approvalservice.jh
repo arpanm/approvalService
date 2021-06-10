@@ -1,0 +1,150 @@
+
+entity ApprovalRule {
+	programId String required,
+    type ApprovalType required,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+entity SubRule {
+	fieldName String required,
+    dataType DataType required,
+    condition Condition required,
+    rangeMinValue Float,
+    rangeMaxValue Float,
+    equalStrValue String,
+    equalDecValue Float,
+    appendType AppendType required
+}
+
+entity SubRuleInListItem {
+	strItem String,
+    decItem Float
+}
+
+entity Approver {
+	programUserId String required,
+    email String required,
+    level Integer required
+}
+
+entity ApprovalRequest {
+	programId String required,
+    type ApprovalType required,
+    approveCallBackUrl String,
+    rejectCallBackUrl String,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate,
+    finalStatus Status
+}
+
+entity ApprovalRequestItem {
+	fieldName String required,
+    dataType DataType required,
+    strValue String,
+    decValue Float
+}
+
+entity IndividualApprovalStatus {
+	status Status required,
+    clientTime String required,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+entity ApprovalLevelStatus {
+	status Status required,
+    level Integer required,
+    clientTime String required,
+    createdBy String,
+    createdAt LocalDate,
+    updatedBy String,
+    updatedAt LocalDate
+}
+
+enum ApprovalType {
+	Job,
+    Offer,
+    Assignment,
+    Timesheet,
+    Expense,
+    Invoice
+}
+
+enum DataType {
+	STR,
+    DEC
+}
+
+enum Condition {
+	EQUAL,
+    IN,
+    RANGE
+}
+
+enum AppendType {
+	START,
+    AND,
+    OR
+}
+
+enum Status {
+	INIT,
+	EMAIL_SEND,
+    APPROVED,
+    REJECTED
+}
+
+relationship OneToMany {
+	ApprovalRule to SubRule{rule}
+}
+
+relationship OneToMany {
+	SubRule to SubRuleInListItem{subRule}
+}
+
+relationship OneToMany {
+	ApprovalRule to Approver{rule}
+}
+
+relationship OneToMany {
+	ApprovalRequest to ApprovalRequestItem{request}
+}
+
+relationship OneToMany {
+	ApprovalRule to ApprovalRequest{rule}
+}
+
+relationship OneToMany {
+	ApprovalRequest to IndividualApprovalStatus{request}
+}
+
+relationship OneToMany {
+	Approver to IndividualApprovalStatus{approver}
+}
+
+relationship OneToMany {
+	ApprovalRequest to ApprovalLevelStatus{request}
+}
+
+relationship OneToMany {
+	Approver to ApprovalLevelStatus{approver}
+}
+
+// Set pagination options
+paginate all with infinite-scroll
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
